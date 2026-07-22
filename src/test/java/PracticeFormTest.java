@@ -62,6 +62,7 @@ public class PracticeFormTest extends TestBase {
             $x("//tr[td[text()='Gender']]/td[2]").shouldHave(text("Female"));
             $x("//tr[td[text()='Mobile']]/td[2]").shouldHave(text("8999655666"));
 
+
     }
 
 
