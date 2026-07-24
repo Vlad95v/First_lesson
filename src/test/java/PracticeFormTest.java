@@ -97,5 +97,32 @@ public class PracticeFormTest extends TestBase {
 
     }
 
+        @Test
+        void succesfulSimpleFormTests() {
+            open("/text-box");
+            $("#userName").setValue("Ivanov Roman");
+            $("#userEmail").setValue("roman@ivi.ru");
+            $("#currentAddress").setValue("Москва");
+            $("#permanentAddress").setValue("Питер");
+            $("#submit").click();
 
+            $("#output #name").shouldHave(text("Ivanov Roman"));
+            $("#output #email").shouldHave(text("roman@ivi.ru"));
+            $("#output #currentAddress").shouldHave(text("Москва"));
+            $("#output #permanentAddress").shouldHave(text("Питер"));
+
+    }
+
+        @Test
+        void negativeSimpleFormTests() {
+            open("/text-box");
+            $("#userName").setValue("Ivanov Roman");
+            $("#userEmail").setValue("romanivi.ru");
+            $("#submit").click();
+
+            $("#userEmail").shouldHave(cssValue("border-color", "rgb(255, 0, 0)"));
+            $("#output #name").shouldNotBe(visible);
+            $("#output #email").shouldNotBe(visible);
+
+    }
 }
