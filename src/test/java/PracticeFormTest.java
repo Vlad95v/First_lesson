@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeFormTest extends TestBase {
@@ -12,18 +13,16 @@ public class PracticeFormTest extends TestBase {
         $("#firstName").setValue("Roman");
         $("#lastName").setValue("Ivanov");
         $("#userEmail").setValue("roman@ivi.ru");
-        $("#gender-radio-1").click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("8999655666");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__year-select").selectOption("2027");
         $(".react-datepicker__month-select").selectOption("May");
         $(".react-datepicker__day--019").click();
-        $("#subjectsInput").setValue("E");
-        $$("[role='option']").get(0).shouldBe(visible).click();
+        $("#subjectsInput").setValue("E").pressEnter();
         $("#subjectsInput").clear();
-        $("#subjectsInput").setValue("H");
-        $$("[role='option']").get(0).shouldBe(visible).click();
-        $("#hobbies-checkbox-3").click();
+        $("#subjectsInput").setValue("H").pressEnter();
+        $("#hobbiesWrapper").$(byText("Music")).click();
         $("#uploadPicture").uploadFromClasspath("photo.jpg");
         $("#currentAddress").setValue("Москва, проспект Андропова");
         $("#state").click();
@@ -50,7 +49,7 @@ public class PracticeFormTest extends TestBase {
             open("/automation-practice-form");
             $("#firstName").setValue("Roman");
             $("#lastName").setValue("Ivanov");
-            $("#gender-radio-2").click();
+            $("#genterWrapper").$(byText("Female")).click();
             $("#userNumber").setValue("8999655666");
             $("#submit").click();
 
@@ -66,7 +65,7 @@ public class PracticeFormTest extends TestBase {
             open("/automation-practice-form");
             $("#firstName").setValue("Roman");
             $("#lastName").setValue("Ivanov");
-            $("#gender-radio-2").click();
+            $("#genterWrapper").$(byText("Female")).click();
             $("#userNumber").setValue("8999");
             $("#submit").click();
 
@@ -81,9 +80,9 @@ public class PracticeFormTest extends TestBase {
              $("#userNumber").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
              $("#firstName").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
              $("#lastName").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
-             $("#gender-radio-1").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
-             $("#gender-radio-2").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
-             $("#gender-radio-3").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+             $("#genterWrapper").$(byText("Male")).shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+             $("#genterWrapper").$(byText("Female")).shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+             $("#genterWrapper").$(byText("Other")).shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
 
     }
 
